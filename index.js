@@ -23,6 +23,10 @@ io.on('connection', (socket) => {
     io.emit('chat message', nickname, msg);
     console.log('message: ' + nickname, msg);
   });
+
+  socket.on('typing', function (data) {
+    socket.broadcast.emit('typing', data);
+  });
 });
 
 server.listen(3000, () => {
